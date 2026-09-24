@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MTE 481 Design Log</title>
+  <meta name="description" content="MTE 481 capstone design log: a low-cost, free-air haptic device based on AIREAL, integrated with video playback and a video game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">MTE 481 <span>Design Log</span></a>
+      <nav aria-label="Sections">
+        <a href="#overview">Overview</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#log">Team log</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">MTE 481 Capstone · Fall 2026</p>
+          <h1>Free-air haptics for video and games</h1>
+          <p class="lede">
+            We are rebuilding Disney Research's <strong>AIREAL</strong> device for less money, improving on it,
+            and connecting it to both video playback and a video game. It fires rings of air that you can feel
+            on your skin from up to a metre away, with nothing to wear or hold.
+          </p>
+          <p class="team-line">Quinn · Nush · Theresa · Hasan</p>
+        </div>
+        <figure class="hero-figure" aria-hidden="true">
+          <svg viewBox="0 0 320 200" role="img">
+            <!-- device -->
+            <rect x="20" y="70" width="70" height="70" rx="10" class="svg-device"/>
+            <path d="M90 95 L118 100 L118 110 L90 115 Z" class="svg-device"/>
+            <!-- rings -->
+            <ellipse cx="150" cy="105" rx="7" ry="18" class="svg-ring r1"/>
+            <ellipse cx="195" cy="105" rx="7" ry="18" class="svg-ring r2"/>
+            <ellipse cx="240" cy="105" rx="7" ry="18" class="svg-ring r3"/>
+            <!-- hand -->
+            <path d="M282 80 q10 -4 14 6 l0 40 q-4 12 -14 8 z" class="svg-hand"/>
+            <line x1="20" y1="170" x2="300" y2="170" class="svg-axis"/>
+            <text x="20" y="190" class="svg-label">device</text>
+            <text x="262" y="190" class="svg-label">≤ 1 m</text>
+          </svg>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section id="overview" class="section">
+      <div class="wrap">
+        <h2>Project overview</h2>
+        <div class="two-col">
+          <div>
+            <h3>The need</h3>
+            <p>
+              Video games and videos mostly give you sound and picture. The only touch feedback is usually
+              vibration, and that needs something against your body, like a controller or wearable gear.
+            </p>
+            <h3>Problem statement</h3>
+            <p class="callout">
+              Design a device that can induce various tactile sensations on a user's body, for gaming and
+              video entertainment purposes, without specialized wearable equipment.
+            </p>
+          </div>
+          <div>
+            <h3>Where we're starting from: AIREAL (SIGGRAPH 2013)</h3>
+            <p>
+              AIREAL pushes air out of a sealed box with five small subwoofers. The air leaves through a flexible
+              nozzle and forms a stable vortex ring. A pan/tilt gimbal aims the nozzle, and a depth camera tracks
+              the user so the rings hit where they should.
+            </p>
+            <dl class="stats">
+              <div><dt>Range</dt><dd>&gt; 1 m</dd></div>
+              <div><dt>Field of view</dt><dd>75°</dd></div>
+              <div><dt>Resolution</dt><dd>8.5 cm at 1 m</dd></div>
+              <div><dt>Avg. latency</dt><dd>139 ms</dd></div>
+              <div><dt>Max power</dt><dd>~60 W</dd></div>
+              <div><dt>Mass</dt><dd>1.28 kg</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <h3>What we're changing</h3>
+        <ul class="goal-grid">
+          <li><strong>Cheaper</strong><span>Off-the-shelf parts and hobby 3D printing instead of research-lab hardware, under a $600 budget.</span></li>
+          <li><strong>Wireless</strong><span>The device talks to the computer without a cable.</span></li>
+          <li><strong>Video playback</strong><span>Haptic effects synced to what's happening on screen.</span></li>
+          <li><strong>Video game</strong><span>Real-time effects triggered by in-game events.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Requirements -->
+    <section id="requirements" class="section alt">
+      <div class="wrap">
+        <h2>Objectives, constraints and criteria</h2>
+        <div class="three-col">
+          <div class="card">
+            <h3>Objectives</h3>
+            <ul>
+              <li>A noticeable sensation up to 1 m away.</li>
+              <li>Touch feedback that isn't vibration or contact-based.</li>
+              <li>No heavy assembly or complicated setup.</li>
+              <li>Wireless link to the computer.</li>
+              <li>Total cost under $600.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Constraints</h3>
+            <ul>
+              <li>Nothing worn; adapts to different poses with no sensors on the body.</li>
+              <li>Sensation arrives no more than 500 ms after the audio/video.</li>
+              <li>Maximum power draw of 100 W.</li>
+              <li>Takes real-time input from another device.</li>
+              <li>Effects adapt to the content being shown.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Criteria</h3>
+            <ul>
+              <li>Range of the sensation (m)</li>
+              <li>Latency (ms)</li>
+              <li>Power use (W)</li>
+              <li>Cost ($)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tasks -->
+    <section id="tasks" class="section">
+      <div class="wrap">
+        <h2>Main tasks</h2>
+        <p class="section-intro">The work splits into three areas. These are the planned work packages, not final design decisions.</p>
+        <div class="three-col">
+          <article class="card task-card mech">
+            <p class="tag">Mechanical</p>
+            <h3>Air, nozzle and aiming</h3>
+            <ul>
+              <li>Vortex chamber: a sealed enclosure with the speaker mounts</li>
+              <li>Nozzle and aperture design and testing (AIREAL's best was about 2 cm)</li>
+              <li>Pan/tilt gimbal that can cover a 75° or wider field</li>
+              <li>Parts designed for low-cost FDM 3D printing</li>
+              <li>Housing and mounting so setup is simple</li>
+            </ul>
+          </article>
+          <article class="card task-card elec">
+            <p class="tag">Electrical</p>
+            <h3>Drive, control and power</h3>
+            <ul>
+              <li>Choose the speakers or actuators</li>
+              <li>Amplifiers and the waveform drive circuit</li>
+              <li>Microcontroller with a wireless link</li>
+              <li>Servo or motor drive for the gimbal</li>
+              <li>Power supply and budget within 100 W; wiring or PCB</li>
+            </ul>
+          </article>
+          <article class="card task-card soft">
+            <p class="tag">Software</p>
+            <h3>Tracking, aiming and content</h3>
+            <ul>
+              <li>Track the user without anything worn (camera-based)</li>
+              <li>Calibrate the camera to the device and convert targets into pan/tilt angles</li>
+              <li>Pulse timing and wireless protocol</li>
+              <li>Sync with video playback</li>
+              <li>Game integration and keeping latency under 500 ms end to end</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team log -->
+    <section id="log" class="section alt">
+      <div class="wrap">
+        <h2>Team log</h2>
+        <p class="section-intro">Completed tasks for each member, newest first. Every entry has a date and an area.</p>
+        <div class="member-grid" id="member-grid">
+          <!-- Filled in from entries.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>MTE 481 · University of Waterloo · Fall 2026</p>
+      <p class="muted">Reference: R. Sodhi, I. Poupyrev, M. Glisson, A. Israr, “AIREAL: Interactive Tactile Experiences in Free Air,” ACM SIGGRAPH 2013.</p>
+    </div>
+  </footer>
+
+  <script src="entries.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
