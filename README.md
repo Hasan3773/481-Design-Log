@@ -23,6 +23,8 @@ Open `entries.js` and add an object to the `ENTRIES` list:
 
 Commit and push to `main`. GitHub Pages redeploys the site in about a minute. Entries show up in that member's column, newest first.
 
+Upcoming tasks go in the `TODO` object in the same file. They show as an "Up next" list at the top of each member's column. When one is done, remove it from `TODO` and log it in `ENTRIES`.
+
 The course rubric grades entries on detail, dates and names, individual contributions, and regular logging, so post often and be specific.
 
 ## Files

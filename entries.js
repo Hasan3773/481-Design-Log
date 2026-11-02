@@ -15,6 +15,24 @@
 
 const MEMBERS = ["Quinn", "Nush", "Theresa", "Hasan"];
 
+// Upcoming tasks for each member, shown at the top of their column.
+// Once a task is done, remove it here and log it in ENTRIES.
+const TODO = {
+  Quinn: [
+    "Component mapping and preliminary electrical design"
+  ],
+  Nush: [
+    "Preliminary design calculations for nozzle diameter",
+    "Find viable subwoofers"
+  ],
+  Theresa: [
+    "Subwoofer selection and preliminary concept design"
+  ],
+  Hasan: [
+    "Preliminary software design formulation"
+  ]
+};
+
 const ENTRIES = [
   {
     member: "Hasan",

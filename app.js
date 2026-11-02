@@ -30,6 +30,16 @@
     head.appendChild(el("span", "count", entries.length + (entries.length === 1 ? " entry" : " entries")));
     col.appendChild(head);
 
+    const todos = (typeof TODO !== "undefined" && TODO[name]) || [];
+    if (todos.length > 0) {
+      const box = el("div", "todo");
+      box.appendChild(el("p", "todo-label", "Up next"));
+      const ul = el("ul");
+      todos.forEach(function (t) { ul.appendChild(el("li", null, t)); });
+      box.appendChild(ul);
+      col.appendChild(box);
+    }
+
     const list = el("ol", "entries");
     if (entries.length === 0) {
       list.appendChild(el("li", "empty", "No completed tasks logged yet."));
